@@ -8,8 +8,8 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <>
-      <header className="flex justify-between items-baseline px-4 py-[30px] shadow-md">
+    <div className="min-h-screen bg-light-gray">
+      <header className="bg-white flex justify-between items-baseline px-4 py-[30px] shadow-md">
         <h1 className="text-lg font-extrabold">Where in the world?</h1>
         <button className="flex gap-2 items-baseline">
           <svg
@@ -35,6 +35,6 @@ function RootComponent() {
       </header>
       <Outlet />
       <TanStackRouterDevtools position="bottom-right" />
-    </>
+    </div>
   );
 }

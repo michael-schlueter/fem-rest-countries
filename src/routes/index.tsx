@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { createFileRoute } from '@tanstack/react-router'
+import RegionFilter from '../components/RegionFilter'
+import SearchBar from '../components/SearchBar'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
@@ -7,8 +9,11 @@ export const Route = createFileRoute('/')({
 
 function HomeComponent() {
   return (
-    <div className="p-2">
-      <h3 className='text-dark-blue-200'>Welcome Home!</h3>
-    </div>
+    <main className='px-4 pt-6 flex flex-col'>
+      <div>
+        <SearchBar />
+        <RegionFilter />
+      </div>
+    </main>
   )
 }

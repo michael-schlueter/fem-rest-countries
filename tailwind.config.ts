@@ -10,6 +10,8 @@ export default {
         "300": "hsl(200, 15%, 8%)",
       },
       "dark-gray": "hsl(0, 0%, 52%)",
+      "gray": "hsl(0, 0%, 70%)",
+      "dim-gray": "hsl(0, 0%, 77%)",
       "light-gray": "hsl(0, 0%, 98%)",
       white: "hsl(0, 0%, 100%",
     },
