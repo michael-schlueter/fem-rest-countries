@@ -10,7 +10,7 @@ export const Route = createFileRoute('/')({
 function HomeComponent() {
   return (
     <main className='px-4 pt-6 flex flex-col'>
-      <div>
+      <div className='flex flex-col gap-10'>
         <SearchBar />
         <RegionFilter />
       </div>
