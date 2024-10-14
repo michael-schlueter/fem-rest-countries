@@ -18,6 +18,7 @@ export default function RegionFilter({ setRegion, region }: RegionFilterProps) {
         <SelectValue placeholder="Filter by Region" />
       </SelectTrigger>
       <SelectContent className="text-xs text-dark-blue-300 border-none">
+        <SelectItem value="reset">Filter by Region</SelectItem>
         <SelectItem value="africa">Africa</SelectItem>
         <SelectItem value="americas">America</SelectItem>
         <SelectItem value="asia">Asia</SelectItem>

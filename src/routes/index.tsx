@@ -28,7 +28,7 @@ function HomeComponent() {
       }
     })
     .filter((filteredCountry) => {
-      if (region === "") {
+      if (region === "" || region === "reset") {
         return filteredCountry;
       } else if (filteredCountry.region.toLowerCase() === region) {
         return filteredCountry;
