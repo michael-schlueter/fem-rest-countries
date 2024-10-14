@@ -9,7 +9,7 @@ export default function SearchBar() {
       <input
         type="text"
         placeholder="Search for a country..."
-        className="w-full py-4 px-8 pl-16 rounded-[5px] shadow-md text-dark-blue-300 placeholder:text-dim-gray bg-white focus:outline-none focus:ring-2 focus:ring-dark-gray"
+        className="w-full py-4 px-8 pl-16 rounded-[5px] shadow-md text-xs text-dark-blue-300 placeholder:text-dim-gray bg-white focus:outline-none focus:ring-2 focus:ring-dark-gray"
       />
     </div>
   );
