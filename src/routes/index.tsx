@@ -43,7 +43,7 @@ function HomeComponent() {
         <SearchBar setSearchTerm={setSearchTerm} />
         <RegionFilter region={region} setRegion={setRegion} />
       </div>
-      <div className="max-w-[336px] grid gap-10 mx-auto ov">
+      <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(0,264px))] gap-10 sm:gap-[75px] justify-center">
         {filteredCountries.map((country) => (
           <CountryCard
             key={country.alpha3Code}
