@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@tanstack/router-plugin": "^1.64.0",
+    "@types/node": "^22.7.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.2",
@@ -21,10 +22,15 @@
     "vite": "^5.4.8"
   },
   "dependencies": {
+    "@radix-ui/react-select": "^2.1.2",
     "@tanstack/react-router": "^1.64.0",
     "@tanstack/router-devtools": "^1.64.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "lucide-react": "^0.451.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss-animate": "^1.0.7"
   }
 }
