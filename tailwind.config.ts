@@ -16,14 +16,15 @@ export default {
       "light-gray": "hsl(0, 0%, 98%)",
       white: "hsl(0, 0%, 100%",
     },
-    fontSizes: {
-      sm: ["0.75rem"],
+    fontSize: {
+      sm: ["0.75rem", "0.75rem"],
+      xm: ["0.75rem", "1rem"],
       xs: ["0.75rem", "1.25rem"],
       base: ["0.875rem", "1rem"],
       lg: ["0.875rem", "1.25rem"],
-      xl: ["1rem"],
+      xl: ["1rem", "1rem"],
       "2xl": ["1.125rem", "1.625rem"],
-      "3xl": ["1.5rem"],
+      "3xl": ["1.5rem", "1.5rem"],
     },
     extend: {
       fontFamily: {
