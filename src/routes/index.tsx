@@ -38,8 +38,8 @@ function HomeComponent() {
     });
 
   return (
-    <main className="px-4 pt-6 flex flex-col gap-[30px]">
-      <div className="flex flex-col gap-10">
+    <main className="px-4 lg:px-20 pt-6 md:pt-12 flex flex-col gap-[30px] md:gap-12">
+      <div className="flex flex-col sm:flex-row sm:justify-between gap-10">
         <SearchBar setSearchTerm={setSearchTerm} />
         <RegionFilter region={region} setRegion={setRegion} />
       </div>
