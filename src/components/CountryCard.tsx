@@ -10,16 +10,16 @@ export default function CountryCard({ name, imagePath, region, capital = "No cap
   return (
     <div className="rounded-[5px] shadow-md overflow-hidden">
       <img className="w-full" src={imagePath} />
-      <div className="grid gap-4 p-6 pb-[46px] bg-white">
-        <h2 className="text-dark-blue-300 text-2xl font-extrabold">{name}</h2>
+      <div className="grid gap-4 p-6 pb-[46px] bg-white dark:bg-dark-blue-400">
+        <h2 className="text-dark-blue-300 dark:text-white text-2xl font-extrabold">{name}</h2>
         <div>
-          <p className="text-base text-dark-blue-300 font-light">
+          <p className="text-base text-dark-blue-300 dark:text-white font-light">
             <span className="font-semibold">Population: </span>{population}
           </p>
-          <p className="text-base text-dark-blue-300 font-light">
+          <p className="text-base text-dark-blue-300 dark:text-white font-light">
             <span className="font-semibold">Region: </span>{region}
           </p>
-          <p className="text-base text-dark-blue-300 font-light">
+          <p className="text-base text-dark-blue-300 dark:text-white font-light">
             <span className="font-semibold">Capital: </span>{capital}
           </p>
         </div>
