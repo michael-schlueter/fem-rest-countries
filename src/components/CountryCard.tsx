@@ -25,7 +25,7 @@ export default function CountryCard({
         <div className="grid gap-2">
           <p className="text-base text-dark-blue-300 dark:text-white font-light">
             <span className="font-semibold">Population: </span>
-            {population}
+            {population.toLocaleString()}
           </p>
           <p className="text-base text-dark-blue-300 dark:text-white font-light">
             <span className="font-semibold">Region: </span>
