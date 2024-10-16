@@ -14,7 +14,7 @@ export default function CountryCard({
   population,
 }: CountryCardProps) {
   return (
-    <div className="rounded-[5px] shadow-md overflow-hidden">
+    <div className="rounded-[5px] shadow-custom overflow-hidden">
       <div className="w-[264px] h-[160px] overflow-hidden">
         <img className="w-full h-full object-cover" src={imagePath} />
       </div>

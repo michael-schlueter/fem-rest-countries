@@ -78,6 +78,11 @@ export default {
           "5": "hsl(var(--chart-5))",
         },
       },
+      boxShadow: {
+        'custom': '0 0 7px 2px rgba(0,0,0,0.0294)',
+        'custom-2': '0 2px 4px 0 rgba(0,0,0,0.0562)',
+        'custom-3': '0 2px 9px 0 rgba(0,0,0,0.0532)'
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

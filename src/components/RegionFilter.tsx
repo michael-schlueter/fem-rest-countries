@@ -14,7 +14,7 @@ type RegionFilterProps = {
 export default function RegionFilter({ setRegion, region }: RegionFilterProps) {
   return (
     <Select value={region} onValueChange={(value) => setRegion(value)}>
-      <SelectTrigger className="w-[200px] h-12 md:h-14 text-xs md:text-lg text-dark-blue-300 dark:text-white dark:bg-dark-blue-400 py-[14px] md:py-[18px] px-6 border-none shadow-md">
+      <SelectTrigger className="w-[200px] h-12 md:h-14 text-xs md:text-lg text-dark-blue-300 dark:text-white dark:bg-dark-blue-400 py-[14px] md:py-[18px] px-6 border-none shadow-custom-3">
         <SelectValue placeholder="Filter by Region" />
       </SelectTrigger>
       <SelectContent className="text-xm text-dark-blue-300 dark:text-white dark:bg-dark-blue-400 border-none">
