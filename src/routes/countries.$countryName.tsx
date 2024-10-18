@@ -8,24 +8,24 @@ export const Route = createFileRoute("/countries/$countryName")({
 function CountryDetails() {
   const { countryName } = useParams({ strict: false });
   return (
-    <main className="grid gap-16 px-7 pt-10 pb-[60px]">
-      <button className="max-w-[104px] flex justify-center items-center gap-2 px-6 py-1.5 text-dark-blue-300 dark:text-white bg-white dark:bg-dark-blue-100 rounded-[2px] shadow-custom-4">
+    <main className="grid gap-16 px-7 pt-10 pb-[60px] xl:p-[80px]">
+      <button className="max-w-[104px] xl:max-w-[136px] flex justify-center items-center gap-2 xl:gap-[10px] py-1.5 xl:py-[10px] text-dark-blue-300 dark:text-white bg-white dark:bg-dark-blue-100 rounded-[2px] xl:rounded-[6px] shadow-custom-4">
         <ArrowLeft />
         <span className="text-xs">Back</span>
       </button>
-      <div className="flex flex-col gap-[44px]">
-        <div className="w-[320px] h-[229px] overflow-hidden rounded-[5px]">
+      <div className="grid xl:grid-cols-[9fr_10fr] gap-[44px] xl:gap-[144px] xl:justify-between items-center">
+        <div className="max-w-[320px] xl:max-w-none xl:w-[560px] xl:h-[400px] overflow-hidden rounded-[5px] xl:rounded-[10px]">
           <img
             className="w-full h-full object-cover"
             src="https://flagcdn.com/be.svg"
           />
         </div>
         <div className="grid gap-[34px]">
-          <div className="grid gap-4">
-            <h2 className="text-dark-blue-300 dark:text-white font-extrabold text-[22px]">
+          <div className="grid gap-4 xl:gap-6">
+            <h2 className="text-dark-blue-300 dark:text-white font-extrabold text-[22px] xl:text-[32px]">
               Belgium
             </h2>
-            <div className="grid gap-8 text-dark-blue-300 dark:text-white text-[14] leading-8">
+            <div className="flex flex-col xl:flex-row gap-8 xl:gap-[118px] text-dark-blue-300 dark:text-white text-[14] leading-8">
               <div className="grid">
                 <p className="font-light">
                   <span className="font-semibold">Native Name: </span>Belgie
@@ -41,10 +41,10 @@ function CountryDetails() {
                   Europe
                 </p>
                 <p className="font-light">
-                  <span className="font-semibold">Caoital: </span>Brussels
+                  <span className="font-semibold">Capital: </span>Brussels
                 </p>
               </div>
-              <div className="grid">
+              <div className="flex flex-col">
                 <p className="font-light">
                   <span className="font-semibold">Top Level Domain: </span>.be
                 </p>
@@ -58,7 +58,7 @@ function CountryDetails() {
               </div>
             </div>
           </div>
-          <div className="grid gap-4">
+          <div className="flex flex-col xl:flex-row gap-4">
             <h3 className="text-dark-blue-300 dark:text-white leading-6 font-bold">
               Border Countries:
             </h3>
