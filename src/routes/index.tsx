@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import RegionFilter from "../components/RegionFilter";
 import SearchBar from "../components/SearchBar";
 import CountryCard from "@/components/CountryCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { countriesSchema } from "@/lib/schemas";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
@@ -55,7 +56,7 @@ function HomeComponent() {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    return data;
+    return countriesSchema.parse(data);
   }
 
   return (
