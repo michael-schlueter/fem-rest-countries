@@ -50,10 +50,10 @@ function HomeComponent() {
 
   async function getCountries() {
     const response = await fetch(
-      "https://restcountries.com/v3.1/all?fields=name,capital,flags,population,region"
+      "https://restcountries.com/v3.1/all?fields=name,capital,flags,population,region,cca3"
     );
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("Countries not found");
     }
     const data = await response.json();
     return countriesSchema.parse(data);
@@ -68,12 +68,13 @@ function HomeComponent() {
       <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(0,264px))] gap-10 sm:gap-[75px] justify-center">
         {filteredCountries.map((country) => (
           <CountryCard
-            key={country.name.common}
+            key={country.cca3}
             name={country.name.common}
             imagePath={country.flags["svg"]}
             region={country.region}
             capital={country.capital[0]}
             population={country.population}
+            countryCode={country.cca3}
           />
         ))}
       </div>

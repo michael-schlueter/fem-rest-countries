@@ -1,13 +1,15 @@
+import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Link, useParams, useRouter } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
-export const Route = createFileRoute("/countries/$countryName")({
+export const Route = createFileRoute("/countries/$countryCode")({
   component: CountryDetails,
 });
 
 function CountryDetails() {
-  const { countryName } = useParams({ strict: false });
+  const { countryCode } = useParams({ strict: false });
   const router = useRouter();
+
   return (
     <main className="grid gap-16 px-7 pt-10 pb-[60px] xl:p-[80px]">
       <button
@@ -67,23 +69,23 @@ function CountryDetails() {
               Border Countries:
             </h3>
             <div className="flex gap-[10px] flex-wrap text-[12px] text-dark-blue-300 dark:text-white">
-              <Link to="/countries/$countryName" params={{
-                countryName: "Germany"
+              <Link to="/countries/$countryCode" params={{
+                countryCode: "Germany"
               }} className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
                 Germany
               </Link>
-              <Link to="/countries/$countryName" params={{
-                countryName: "Netherlands"
+              <Link to="/countries/$countryCode" params={{
+                countryCode: "Netherlands"
               }} className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
                 Netherlands
               </Link>
-              <Link to="/countries/$countryName" params={{
-                countryName: "France"
+              <Link to="/countries/$countryCode" params={{
+                countryCode: "France"
               }} className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
                 France
               </Link>
-              <Link to="/countries/$countryName" params={{
-                countryName: "France"
+              <Link to="/countries/$countryCode" params={{
+                countryCode: "France"
               }} className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
                 France
               </Link>

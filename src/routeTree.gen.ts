@@ -10,83 +10,83 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-import { Route as CountriesCountryNameImport } from './routes/countries.$countryName'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as IndexImport } from "./routes/index";
+import { Route as CountriesCountryCodeImport } from "./routes/countries.$countryCode";
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
-  path: '/',
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
-const CountriesCountryNameRoute = CountriesCountryNameImport.update({
-  path: '/countries/$countryName',
+const CountriesCountryCodeRoute = CountriesCountryCodeImport.update({
+  path: "/countries/$countryCode",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/countries/$countryName': {
-      id: '/countries/$countryName'
-      path: '/countries/$countryName'
-      fullPath: '/countries/$countryName'
-      preLoaderRoute: typeof CountriesCountryNameImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/countries/$countryCode": {
+      id: "/countries/$countryCode";
+      path: "/countries/$countryCode";
+      fullPath: "/countries/$countryCode";
+      preLoaderRoute: typeof CountriesCountryCodeImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/countries/$countryName': typeof CountriesCountryNameRoute
+  "/": typeof IndexRoute;
+  "/countries/$countryCode": typeof CountriesCountryCodeRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/countries/$countryName': typeof CountriesCountryNameRoute
+  "/": typeof IndexRoute;
+  "/countries/$countryCode": typeof CountriesCountryCodeRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/countries/$countryName': typeof CountriesCountryNameRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/countries/$countryCode": typeof CountriesCountryCodeRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/countries/$countryName'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/countries/$countryName'
-  id: '__root__' | '/' | '/countries/$countryName'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "/" | "/countries/$countryCode";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/" | "/countries/$countryCode";
+  id: "__root__" | "/" | "/countries/$countryCode";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  CountriesCountryNameRoute: typeof CountriesCountryNameRoute
+  IndexRoute: typeof IndexRoute;
+  CountriesCountryCodeRoute: typeof CountriesCountryCodeRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CountriesCountryNameRoute: CountriesCountryNameRoute,
-}
+  CountriesCountryCodeRoute: CountriesCountryCodeRoute,
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* prettier-ignore-end */
 
@@ -97,14 +97,14 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/countries/$countryName"
+        "/countries/$countryCode"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/countries/$countryName": {
-      "filePath": "countries.$countryName.tsx"
+    "/countries/$countryCode": {
+      "filePath": "countries.$countryCode.tsx"
     }
   }
 }

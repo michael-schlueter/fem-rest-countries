@@ -6,6 +6,7 @@ type CountryCardProps = {
   region: string;
   capital: string | undefined;
   population: number;
+  countryCode: string;
 };
 
 export default function CountryCard({
@@ -14,12 +15,13 @@ export default function CountryCard({
   region,
   capital = "No capital",
   population,
+  countryCode,
 }: CountryCardProps) {
   return (
     <Link
-      to="/countries/$countryName"
+      to="/countries/$countryCode"
       params={{
-        countryName: name,
+        countryCode: countryCode,
       }}
       className="rounded-[5px] shadow-custom overflow-hidden"
     >

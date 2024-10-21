@@ -5,6 +5,7 @@ export const countriesSchema = z.array(
     name: z.object({
       common: z.string(),
     }),
+    cca3: z.string(),
     region: z.string(),
     population: z.number(),
     capital: z.array(z.string()),
