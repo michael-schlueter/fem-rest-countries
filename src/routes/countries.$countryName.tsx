@@ -1,4 +1,4 @@
-import { createFileRoute, useParams } from "@tanstack/react-router";
+import { createFileRoute, Link, useParams, useRouter } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/countries/$countryName")({
@@ -7,9 +7,13 @@ export const Route = createFileRoute("/countries/$countryName")({
 
 function CountryDetails() {
   const { countryName } = useParams({ strict: false });
+  const router = useRouter();
   return (
     <main className="grid gap-16 px-7 pt-10 pb-[60px] xl:p-[80px]">
-      <button className="max-w-[104px] xl:max-w-[136px] flex justify-center items-center gap-2 xl:gap-[10px] py-1.5 xl:py-[10px] text-dark-blue-300 dark:text-white bg-white dark:bg-dark-blue-100 rounded-[2px] xl:rounded-[6px] shadow-custom-4">
+      <button
+        onClick={() => router.history.back()}
+        className="max-w-[104px] xl:max-w-[136px] flex justify-center items-center gap-2 xl:gap-[10px] py-1.5 xl:py-[10px] text-dark-blue-300 dark:text-white bg-white dark:bg-dark-blue-100 rounded-[2px] xl:rounded-[6px] shadow-custom-4"
+      >
         <ArrowLeft />
         <span className="text-xs">Back</span>
       </button>
@@ -63,18 +67,26 @@ function CountryDetails() {
               Border Countries:
             </h3>
             <div className="flex gap-[10px] flex-wrap text-[12px] text-dark-blue-300 dark:text-white">
-              <div className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
+              <Link to="/countries/$countryName" params={{
+                countryName: "Germany"
+              }} className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
                 Germany
-              </div>
-              <div className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
+              </Link>
+              <Link to="/countries/$countryName" params={{
+                countryName: "Netherlands"
+              }} className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
                 Netherlands
-              </div>
-              <div className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
+              </Link>
+              <Link to="/countries/$countryName" params={{
+                countryName: "France"
+              }} className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
                 France
-              </div>
-              <div className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
+              </Link>
+              <Link to="/countries/$countryName" params={{
+                countryName: "France"
+              }} className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5">
                 France
-              </div>
+              </Link>
             </div>
           </div>
         </div>

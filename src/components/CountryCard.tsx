@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 type CountryCardProps = {
   name: string;
   imagePath: string;
@@ -14,7 +16,13 @@ export default function CountryCard({
   population,
 }: CountryCardProps) {
   return (
-    <div className="rounded-[5px] shadow-custom overflow-hidden">
+    <Link
+      to="/countries/$countryName"
+      params={{
+        countryName: name,
+      }}
+      className="rounded-[5px] shadow-custom overflow-hidden"
+    >
       <div className="w-[264px] h-[160px] overflow-hidden">
         <img className="w-full h-full object-cover" src={imagePath} />
       </div>
@@ -37,6 +45,6 @@ export default function CountryCard({
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
