@@ -7,6 +7,7 @@ import {
   useRouter,
 } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
+import countriesData from "@/data.json";
 
 export const Route = createFileRoute("/countries/$countryCode")({
   component: CountryDetails,
@@ -24,6 +25,13 @@ function CountryDetails() {
     queryKey: ["country", countryCode],
     queryFn: getCountry,
   });
+
+  const getCountryNameByCode = (code: string) => {
+    const country = countriesData.find(
+      (country) => country.alpha3Code === code
+    );
+    return country ? country.name : code;
+  };
 
   if (isPending) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -137,20 +145,22 @@ function CountryDetails() {
             <h3 className="text-dark-blue-300 dark:text-white leading-6 font-bold">
               Border Countries:
             </h3>
-            <div className="flex gap-[10px] flex-wrap text-[12px] text-dark-blue-300 dark:text-white">
-              {country.borders.map((borderCountry, index) => (
-                <Link
-                  key={index}
-                  to={`/countries/${borderCountry}`}
-                  params={{
-                    countryCode: borderCountry
-                  }}
-                  className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5"
-                >
-                  {borderCountry}
-                </Link>
-              ))}
-            </div>
+            {country.borders && (
+              <div className="flex gap-[10px] flex-wrap text-[12px] text-dark-blue-300 dark:text-white">
+                {country.borders.map((borderCountry, index) => (
+                  <Link
+                    key={index}
+                    to={`/countries/${borderCountry}`}
+                    params={{
+                      countryCode: borderCountry,
+                    }}
+                    className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5"
+                  >
+                    {getCountryNameByCode(borderCountry)}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

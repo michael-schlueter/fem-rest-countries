@@ -44,5 +44,5 @@ export const countrySchema = z.object({
   tld: z.array(z.string()),
   currencies: z.record(currencySchema),
   languages: z.record(languageSchema),
-  borders: z.array(z.string()),
+  borders: z.array(z.string()).optional(),
 });
