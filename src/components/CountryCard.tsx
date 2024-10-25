@@ -4,7 +4,7 @@ type CountryCardProps = {
   name: string;
   imagePath: string;
   region: string;
-  capital: string | undefined;
+  capital: string[] | undefined;
   population: number;
   countryCode: string;
 };
@@ -13,7 +13,7 @@ export default function CountryCard({
   name,
   imagePath,
   region,
-  capital = "No capital",
+  capital = ["No capital"],
   population,
   countryCode,
 }: CountryCardProps) {
@@ -43,7 +43,12 @@ export default function CountryCard({
           </p>
           <p className="text-base text-dark-blue-300 dark:text-white font-light">
             <span className="font-semibold">Capital: </span>
-            {capital}
+            {capital.map((city, index) => (
+              <span key={index}>
+                {city}
+                {index < capital.length - 1 ? ", " : ""}
+              </span>
+            ))}
           </p>
         </div>
       </div>

@@ -72,7 +72,7 @@ function HomeComponent() {
             name={country.name.common}
             imagePath={country.flags["svg"]}
             region={country.region}
-            capital={country.capital[0]}
+            capital={country.capital}
             population={country.population}
             countryCode={country.cca3}
           />
