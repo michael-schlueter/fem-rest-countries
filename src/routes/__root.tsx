@@ -29,7 +29,7 @@ function RootComponent() {
 
   return (
     <div className="min-h-screen bg-light-gray dark:bg-dark-blue-200">
-      <header className="bg-white dark:bg-dark-blue-400 flex justify-between items-baseline px-4 lg:px-20 py-[30px] shadow-custom-2">
+      <header className="bg-white dark:bg-dark-blue-400 flex justify-between px-4 lg:px-20 py-[30px] shadow-custom-2">
         <h1 className="text-lg md:text-2xl text-dark-blue-300 dark:text-white font-extrabold">
           Where in the world?
         </h1>
@@ -37,7 +37,7 @@ function RootComponent() {
           onClick={handleToggleDarkMode}
           className="flex gap-2 items-center text-dark-blue-300 dark:text-white"
         >
-          <Moon className="h-4 w-4 md:h-5 md:w-5" />
+          <Moon className="h-4 w-4 md:h-5 md:w-5 dark:fill-white" />
 
           <span className="text-sm md:text-xl font-semibold">Dark Mode</span>
         </button>
