@@ -53,8 +53,8 @@ function CountryDetails() {
         onClick={() => router.history.back()}
         className="max-w-[104px] xl:max-w-[136px] flex justify-center items-center gap-2 xl:gap-[10px] py-1.5 xl:py-[10px] text-dark-blue-300 dark:text-white bg-white dark:bg-dark-blue-100 rounded-[2px] xl:rounded-[6px] shadow-custom-4"
       >
-        <ArrowLeft />
-        <span className="text-xs">Back</span>
+        <ArrowLeft className="-ml-[4px]" />
+        <span className="-ml-[2px] text-xs">Back</span>
       </button>
       <div className="grid xl:grid-cols-[9fr_10fr] gap-[44px] xl:gap-[144px] xl:justify-between items-center">
         <div className="max-w-[320px] xl:max-w-none xl:w-[560px] xl:h-[400px] overflow-hidden rounded-[5px] xl:rounded-[10px]">
