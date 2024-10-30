@@ -37,14 +37,20 @@ function CountryDetails() {
   if (error) return <div>Error: {error.message}</div>;
 
   async function getCountry() {
-    const response = await fetch(
-      `https://restcountries.com/v3.1/alpha/${countryCode}`
-    );
-    if (!response.ok) {
-      throw new Error("Network Error");
+    try {
+      const response = await fetch(
+        `https://restcountries.com/v3.1/alpha/${countryCode}`
+      );
+      if (!response.ok) {
+        throw new Error("Network Error");
+      }
+      const data = await response.json();
+      return countrySchema.parse(data[0]);
+
+    } catch(error) {
+      console.error("Error fetching countries:", error);
+      throw error;
     }
-    const data = await response.json();
-    return countrySchema.parse(data[0]);
   }
 
   return (
@@ -118,9 +124,9 @@ function CountryDetails() {
                 </p>
                 <p className="font-light">
                   <span className="font-semibold">Currencies: </span>
-                  {Object.values(country.currencies).map((curency, index) => (
+                  {Object.values(country.currencies).map((currency, index) => (
                     <span key={index}>
-                      {curency.name}
+                      {currency.name}
                       {index < Object.values(country.currencies).length - 1
                         ? ", "
                         : ""}
