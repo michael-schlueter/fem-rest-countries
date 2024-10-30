@@ -9,6 +9,7 @@
 - Data-fetching is another part of this challenge. Considering I'm already using TanStack router, it was logical to use TanStack query for data-fetching. Normally I just use useEffect to implement data-fetching for projects of this scope but in this context I was also willing to experiment with using a library for data-fetching.
 - The project also demanded finding and using different icons to work with. I went with lucide react icons because I find them very easy to integrate with React and Tailwind
 - I wanted to add some additional type-safety and used Zod schemas to validate the API response
+- The emphasis of this project was on routing and data-fetching. I didn't focus that much on styling (e.g. not providing a proper loading spinner, error messages or not-found-page)
 
 ## Technologies Used
 

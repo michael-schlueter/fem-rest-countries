@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Moon } from "lucide-react";
 
 type HeaderProps = {
@@ -7,9 +8,9 @@ type HeaderProps = {
 export default function Header({ onHandleToggleDarkMode }: HeaderProps) {
   return (
     <header className="bg-white dark:bg-dark-blue-400 flex justify-between px-4 lg:px-20 py-[30px] shadow-custom-2">
-      <h1 className="text-lg md:text-2xl text-dark-blue-300 dark:text-white font-extrabold">
+      <Link to="/" className="text-lg md:text-2xl text-dark-blue-300 dark:text-white font-extrabold">
         Where in the world?
-      </h1>
+      </Link>
       <button
         onClick={onHandleToggleDarkMode}
         className="flex gap-2 items-center text-dark-blue-300 dark:text-white"
