@@ -46,8 +46,7 @@ function CountryDetails() {
       }
       const data = await response.json();
       return countrySchema.parse(data[0]);
-
-    } catch(error) {
+    } catch (error) {
       console.error("Error fetching countries:", error);
       throw error;
     }
@@ -67,6 +66,7 @@ function CountryDetails() {
           <img
             className="w-full h-full object-cover"
             src={country.flags["svg"]}
+            alt={`flag of ${country.name}`}
           />
         </div>
         <div className="grid gap-[34px]">

@@ -26,7 +26,7 @@ export default function CountryCard({
       className="rounded-[5px] shadow-custom overflow-hidden bg-white dark:bg-dark-blue-400"
     >
       <div className="w-[264px] h-[160px] overflow-hidden">
-        <img className="w-full h-full object-cover" src={imagePath} />
+        <img className="w-full h-full object-cover" src={imagePath} alt={`flag of ${name}`} />
       </div>
       <div className="grid gap-4 p-6 pb-[46px">
         <h2 className="text-dark-blue-300 dark:text-white text-2xl font-extrabold truncate">
