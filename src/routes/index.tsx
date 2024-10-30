@@ -49,14 +49,19 @@ function HomeComponent() {
     });
 
   async function getCountries() {
-    const response = await fetch(
-      "https://restcountries.com/v3.1/all?fields=name,capital,flags,population,region,cca3"
-    );
-    if (!response.ok) {
-      throw new Error("Countries not found");
+    try {
+      const response = await fetch(
+        "https://restcountries.com/v3.1/all?fields=name,capital,flags,population,region,cca3"
+      );
+      if (!response.ok) {
+        throw new Error("Countries not found");
+      }
+      const data = await response.json();
+      return countriesSchema.parse(data);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+      throw error;
     }
-    const data = await response.json();
-    return countriesSchema.parse(data);
   }
 
   return (
