@@ -71,9 +71,9 @@ function CountryDetails() {
         </div>
         <div className="grid gap-[34px]">
           <div className="grid gap-4 xl:gap-6">
-            <h2 className="text-dark-blue-300 dark:text-white font-extrabold text-[22px] xl:text-[32px]">
+            <h1 className="text-dark-blue-300 dark:text-white font-extrabold text-[22px] xl:text-[32px]">
               {country.name.common}
-            </h2>
+            </h1>
             <div className="flex flex-col xl:flex-row gap-8 xl:gap-[118px] text-dark-blue-300 dark:text-white text-[14] leading-8">
               <div className="grid">
                 <p className="font-light">
