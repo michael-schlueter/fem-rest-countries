@@ -1,5 +1,4 @@
-import { getCountry, getBorderCountries } from "@/api/countries";
-import { useQuery } from "@tanstack/react-query";
+import { useBorderCountries, useCountry } from "@/lib/hooks";
 import {
   createFileRoute,
   Link,
@@ -16,21 +15,10 @@ function CountryDetails() {
   const { countryCode } = useParams({ strict: false });
   const router = useRouter();
 
-  const {
-    isPending,
-    error,
-    data: country,
-  } = useQuery({
-    queryKey: ["country", countryCode],
-    queryFn: () => getCountry(countryCode),
-  });
+  const { isPending, error, data: country } = useCountry(countryCode);
 
   const { data: borderCountries = [], isLoading: isBorderCountriesLoading } =
-    useQuery({
-      queryKey: ["borderCountries", country?.borders],
-      queryFn: () => getBorderCountries(country?.borders ?? []),
-      enabled: !!country?.borders, // only run query when we have border codes
-    });
+    useBorderCountries(country?.borders);
 
   if (isPending) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;

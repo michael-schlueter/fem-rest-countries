@@ -3,8 +3,7 @@ import RegionFilter from "../components/RegionFilter";
 import SearchBar from "../components/SearchBar";
 import CountryCard from "@/components/CountryCard";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getCountries } from "@/api/countries";
+import { useCountries } from "@/lib/hooks";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
@@ -14,14 +13,7 @@ function HomeComponent() {
   const [searchTerm, setSearchTerm] = useState("");
   const [region, setRegion] = useState("");
 
-  const {
-    isPending,
-    error,
-    data: countries,
-  } = useQuery({
-    queryKey: ["countries"],
-    queryFn: getCountries,
-  });
+  const { isPending, error, data: countries } = useCountries();
 
   if (isPending) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;

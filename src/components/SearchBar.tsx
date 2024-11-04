@@ -1,3 +1,4 @@
+import { useDebounce } from "@/lib/hooks";
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -7,16 +8,11 @@ type SearchBarProps = {
 
 export default function SearchBar({ setSearchTerm }: SearchBarProps) {
   const [inputValue, setInputValue] = useState("");
+  const debouncedValue = useDebounce(inputValue);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      setSearchTerm(inputValue);
-    }, 300); // Debounce time of 300ms
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [inputValue, setSearchTerm]);
+    setSearchTerm(debouncedValue);
+  }, [debouncedValue, setSearchTerm]);
 
   return (
     <div className="relative w-full max-w-[480px] shadow-custom-3">
