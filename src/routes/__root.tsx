@@ -28,7 +28,7 @@ function RootComponent() {
 
   return (
     <div className="min-h-screen bg-light-gray dark:bg-dark-blue-200">
-      <Header onHandleToggleDarkMode={handleToggleDarkMode} />
+      <Header onHandleToggleDarkMode={handleToggleDarkMode} isDarkMode={isDarkMode} />
       <Outlet />
     </div>
   );

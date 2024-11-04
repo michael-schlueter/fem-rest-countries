@@ -3,9 +3,10 @@ import { Moon } from "lucide-react";
 
 type HeaderProps = {
   onHandleToggleDarkMode: () => void;
+  isDarkMode: boolean;
 };
 
-export default function Header({ onHandleToggleDarkMode }: HeaderProps) {
+export default function Header({ onHandleToggleDarkMode, isDarkMode }: HeaderProps) {
   return (
     <header className="bg-white dark:bg-dark-blue-400 flex justify-between px-4 lg:px-20 py-[30px] shadow-custom-2">
       <Link to="/" className="text-lg md:text-2xl text-dark-blue-300 dark:text-white font-extrabold">
@@ -18,7 +19,7 @@ export default function Header({ onHandleToggleDarkMode }: HeaderProps) {
       >
         <Moon className="h-4 w-4 md:h-5 md:w-5 dark:fill-white" />
 
-        <span className="text-sm md:text-xl font-semibold">Dark Mode</span>
+        <span className="text-sm md:text-xl font-semibold">{isDarkMode ? "Light Mode" : "Dark Mode"}</span>
       </button>
     </header>
   );
