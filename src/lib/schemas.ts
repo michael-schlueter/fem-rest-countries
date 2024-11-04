@@ -21,16 +21,14 @@ const currencySchema = z.object({
 });
 
 const languageSchema = z.string();
-;
-
 const nameSchema = z.object({
   common: z.string(),
   nativeName: z.record(
     z.object({
       official: z.string(),
     })
-  )
-})
+  ),
+});
 
 export const countrySchema = z.object({
   name: nameSchema,
@@ -46,3 +44,12 @@ export const countrySchema = z.object({
   languages: z.record(languageSchema),
   borders: z.array(z.string()).optional(),
 });
+
+const borderCountrySchema = z.object({
+  name: z.object({
+    common: z.string(),
+  }),
+  cca3: z.string()
+});
+
+export const borderCountriesSchema = z.array(borderCountrySchema);

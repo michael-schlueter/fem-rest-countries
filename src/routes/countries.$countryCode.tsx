@@ -1,4 +1,4 @@
-import { countrySchema } from "@/lib/schemas";
+import { countrySchema, borderCountriesSchema } from "@/lib/schemas";
 import { useQuery } from "@tanstack/react-query";
 import {
   createFileRoute,
@@ -7,11 +7,25 @@ import {
   useRouter,
 } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
-import countriesData from "@/data.json";
 
 export const Route = createFileRoute("/countries/$countryCode")({
   component: CountryDetails,
 });
+
+async function getBorderCountries(borders: string[]) {
+  if (!borders.length) return [];
+
+  const response = await fetch(
+    `https://restcountries.com/v3.1/alpha?codes=${borders.join(",")}&fields=name,cca3`
+  );
+
+  if (!response.ok) {
+    throw new Error("Network Error");
+  }
+
+  const data = await response.json();
+  return borderCountriesSchema.parse(data);
+}
 
 function CountryDetails() {
   const { countryCode } = useParams({ strict: false });
@@ -26,15 +40,12 @@ function CountryDetails() {
     queryFn: getCountry,
   });
 
-  const getCountryNameByCode = (code: string) => {
-    const country = countriesData.find(
-      (country) => country.alpha3Code === code
-    );
-    return country ? country.name : code;
-  };
-
-  if (isPending) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  const { data: borderCountries = [], isLoading: isBorderCountriesLoading } =
+    useQuery({
+      queryKey: ["borderCountries", country?.borders],
+      queryFn: () => getBorderCountries(country?.borders ?? []),
+      enabled: !!country?.borders, // only run query when we have border codes
+    });
 
   async function getCountry() {
     try {
@@ -51,6 +62,9 @@ function CountryDetails() {
       throw error;
     }
   }
+
+  if (isPending) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <main className="grid gap-16 px-7 pt-10 pb-[60px] xl:p-[80px]">
@@ -153,18 +167,26 @@ function CountryDetails() {
             </h3>
             {country.borders && (
               <div className="flex gap-[10px] flex-wrap text-[12px] text-dark-blue-300 dark:text-white">
-                {country.borders.map((borderCountry, index) => (
-                  <Link
-                    key={index}
-                    to={`/countries/${borderCountry}`}
-                    params={{
-                      countryCode: borderCountry,
-                    }}
-                    className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5 transition-all hover:scale-105 hover:opacity-80"
-                  >
-                    {getCountryNameByCode(borderCountry)}
-                  </Link>
-                ))}
+                {country.borders.map((borderCountry) => {
+                  const matchingCountry = borderCountries.find(
+                    (country) => country.cca3 === borderCountry
+                  );
+
+                  return (
+                    <Link
+                      key={borderCountry}
+                      to={`/countries/${borderCountry}`}
+                      params={{
+                        countryCode: borderCountry,
+                      }}
+                      className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5 transition-all hover:scale-105 hover:opacity-80"
+                    >
+                      {isBorderCountriesLoading
+                        ? "Loading"
+                        : matchingCountry?.name.common}
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </div>
