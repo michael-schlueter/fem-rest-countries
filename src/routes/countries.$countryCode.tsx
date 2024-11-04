@@ -1,5 +1,4 @@
-import { API_URL, FIELDS_BORDER } from "@/lib/constants";
-import { countrySchema, borderCountriesSchema } from "@/lib/schemas";
+import { getCountry, getBorderCountries } from "@/api/countries";
 import { useQuery } from "@tanstack/react-query";
 import {
   createFileRoute,
@@ -13,21 +12,6 @@ export const Route = createFileRoute("/countries/$countryCode")({
   component: CountryDetails,
 });
 
-async function getBorderCountries(borders: string[]) {
-  if (!borders.length) return [];
-
-  const response = await fetch(
-    `${API_URL}/alpha?codes=${borders.join(",")}&${FIELDS_BORDER}`
-  );
-
-  if (!response.ok) {
-    throw new Error("Network Error");
-  }
-
-  const data = await response.json();
-  return borderCountriesSchema.parse(data);
-}
-
 function CountryDetails() {
   const { countryCode } = useParams({ strict: false });
   const router = useRouter();
@@ -38,7 +22,7 @@ function CountryDetails() {
     data: country,
   } = useQuery({
     queryKey: ["country", countryCode],
-    queryFn: getCountry,
+    queryFn: () => getCountry(countryCode),
   });
 
   const { data: borderCountries = [], isLoading: isBorderCountriesLoading } =
@@ -47,22 +31,6 @@ function CountryDetails() {
       queryFn: () => getBorderCountries(country?.borders ?? []),
       enabled: !!country?.borders, // only run query when we have border codes
     });
-
-  async function getCountry() {
-    try {
-      const response = await fetch(
-        `https://restcountries.com/v3.1/alpha/${countryCode}`
-      );
-      if (!response.ok) {
-        throw new Error("Network Error");
-      }
-      const data = await response.json();
-      return countrySchema.parse(data[0]);
-    } catch (error) {
-      console.error("Error fetching countries:", error);
-      throw error;
-    }
-  }
 
   if (isPending) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;

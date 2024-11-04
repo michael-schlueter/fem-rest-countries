@@ -4,8 +4,7 @@ import SearchBar from "../components/SearchBar";
 import CountryCard from "@/components/CountryCard";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { countriesSchema } from "@/lib/schemas";
-import { API_URL, FIELDS_BASIC } from "@/lib/constants";
+import { getCountries } from "@/api/countries";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
@@ -48,22 +47,6 @@ function HomeComponent() {
         return false;
       }
     });
-
-  async function getCountries() {
-    try {
-      const response = await fetch(
-        `${API_URL}/all?${FIELDS_BASIC}`
-      );
-      if (!response.ok) {
-        throw new Error("Countries not found");
-      }
-      const data = await response.json();
-      return countriesSchema.parse(data);
-    } catch (error) {
-      console.error("Error fetching countries:", error);
-      throw error;
-    }
-  }
 
   return (
     <main className="px-4 lg:px-20 pt-6 md:pt-12 flex flex-col gap-[30px] md:gap-12">
