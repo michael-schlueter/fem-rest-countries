@@ -64,3 +64,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+* {
+  transition:
+    background-color 500ms,
+    color-scheme 500ms;
+
+  color-scheme: light;
+
+  &.dark {
+    color-scheme: dark;
+  }
+}

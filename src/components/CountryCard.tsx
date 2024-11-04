@@ -23,7 +23,7 @@ export default function CountryCard({
       params={{
         countryCode: countryCode,
       }}
-      className="rounded-[5px] shadow-custom overflow-hidden bg-white dark:bg-dark-blue-400"
+      className="rounded-[5px] shadow-custom overflow-hidden bg-white dark:bg-dark-blue-400 transition-all hover:scale-105"
     >
       <div className="w-[264px] h-[160px] overflow-hidden">
         <img className="w-full h-full object-cover" src={imagePath} alt={`flag of ${name}`} />

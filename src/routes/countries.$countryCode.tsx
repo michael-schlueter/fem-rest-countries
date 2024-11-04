@@ -160,7 +160,7 @@ function CountryDetails() {
                     params={{
                       countryCode: borderCountry,
                     }}
-                    className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5"
+                    className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5 transition-all hover:scale-105 hover:opacity-80"
                   >
                     {getCountryNameByCode(borderCountry)}
                   </Link>
