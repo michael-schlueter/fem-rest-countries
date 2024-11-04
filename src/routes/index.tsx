@@ -5,6 +5,7 @@ import CountryCard from "@/components/CountryCard";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { countriesSchema } from "@/lib/schemas";
+import { API_URL, FIELDS_BASIC } from "@/lib/constants";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
@@ -51,7 +52,7 @@ function HomeComponent() {
   async function getCountries() {
     try {
       const response = await fetch(
-        "https://restcountries.com/v3.1/all?fields=name,capital,flags,population,region,cca3"
+        `${API_URL}/all?${FIELDS_BASIC}`
       );
       if (!response.ok) {
         throw new Error("Countries not found");

@@ -1,3 +1,4 @@
+import { API_URL, FIELDS_BORDER } from "@/lib/constants";
 import { countrySchema, borderCountriesSchema } from "@/lib/schemas";
 import { useQuery } from "@tanstack/react-query";
 import {
@@ -16,7 +17,7 @@ async function getBorderCountries(borders: string[]) {
   if (!borders.length) return [];
 
   const response = await fetch(
-    `https://restcountries.com/v3.1/alpha?codes=${borders.join(",")}&fields=name,cca3`
+    `${API_URL}/alpha?codes=${borders.join(",")}&${FIELDS_BORDER}`
   );
 
   if (!response.ok) {
