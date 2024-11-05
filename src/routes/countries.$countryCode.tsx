@@ -1,3 +1,4 @@
+import NotFound from "@/components/NotFound";
 import { useBorderCountries, useCountry } from "@/lib/hooks";
 import {
   createFileRoute,
@@ -20,7 +21,7 @@ function CountryDetails() {
   const { data: borderCountries = [], isLoading: isBorderCountriesLoading } =
     useBorderCountries(country?.borders);
 
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <NotFound type="Country" />;
 
   return (
     <main className="grid gap-16 px-7 pt-10 pb-[60px] xl:p-[80px]">

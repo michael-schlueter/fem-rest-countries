@@ -1,10 +1,11 @@
 import Header from "@/components/Header";
+import NotFound from "@/components/NotFound";
 import { useDarkMode } from "@/lib/hooks";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 
 export const Route = createRootRoute({
   component: RootComponent,
+  notFoundComponent: () =>  <NotFound type="Page" />,
 });
 
 function RootComponent() {
