@@ -26,7 +26,7 @@ function CountryDetails() {
     <main className="grid gap-16 px-7 pt-10 pb-[60px] xl:p-[80px]">
       <button
         onClick={() => router.history.back()}
-        className="max-w-[104px] xl:max-w-[136px] flex justify-center items-center gap-2 xl:gap-[10px] py-1.5 xl:py-[10px] text-dark-blue-300 dark:text-white bg-white dark:bg-dark-blue-100 rounded-[2px] xl:rounded-[6px] shadow-custom-4"
+        className="max-w-[104px] xl:max-w-[136px] flex justify-center items-center gap-2 xl:gap-[10px] py-1.5 xl:py-[10px] text-dark-blue-300 dark:text-white bg-white dark:bg-dark-blue-100 rounded-[2px] xl:rounded-[6px] shadow-custom-4 transition-all hover:scale-105 hover:opacity-80"
       >
         <ArrowLeft className="-ml-[4px]" />
         <span className="-ml-[2px] text-xs">Back</span>
