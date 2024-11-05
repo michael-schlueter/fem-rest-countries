@@ -37,7 +37,7 @@ export const countrySchema = z.object({
   }),
   population: z.number(),
   region: z.string(),
-  subregion: z.string(),
+  subregion: z.string().optional(),
   capital: z.array(z.string()),
   tld: z.array(z.string()),
   currencies: z.record(currencySchema),
