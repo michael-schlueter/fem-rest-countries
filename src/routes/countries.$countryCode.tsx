@@ -1,12 +1,8 @@
 import NotFound from "@/components/NotFound";
+import BackButton from "@/components/ui/BackButton";
 import { useBorderCountries, useCountry } from "@/lib/hooks";
-import {
-  createFileRoute,
-  Link,
-  useParams,
-  useRouter,
-} from "@tanstack/react-router";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { createFileRoute, Link, useParams } from "@tanstack/react-router";
+import { Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/countries/$countryCode")({
   component: CountryDetails,
@@ -14,7 +10,6 @@ export const Route = createFileRoute("/countries/$countryCode")({
 
 function CountryDetails() {
   const { countryCode } = useParams({ strict: false });
-  const router = useRouter();
 
   const { isPending, error, data: country } = useCountry(countryCode);
 
@@ -25,13 +20,7 @@ function CountryDetails() {
 
   return (
     <main className="grid gap-16 px-7 pt-10 pb-[60px] xl:p-[80px]">
-      <button
-        onClick={() => router.history.back()}
-        className="max-w-[104px] xl:max-w-[136px] flex justify-center items-center gap-2 xl:gap-[10px] py-1.5 xl:py-[10px] text-dark-blue-300 dark:text-white bg-white dark:bg-dark-blue-100 rounded-[2px] xl:rounded-[6px] shadow-custom-4 transition-all hover:scale-105 hover:opacity-80"
-      >
-        <ArrowLeft className="-ml-[4px]" />
-        <span className="-ml-[2px] text-xs">Back</span>
-      </button>
+      <BackButton />
       {isPending ? (
         <div className="flex justify-center items-center min-h-[400px]">
           <Loader2 className="h-8 w-8 animate-spin" />
@@ -66,62 +55,18 @@ function CountryDetails() {
                       )
                     )}
                   </p>
-                  <p className="font-light">
-                    <span className="font-semibold">Population: </span>
-                    {country.population.toLocaleString()}
-                  </p>
-                  <p className="font-light">
-                    <span className="font-semibold">Region: </span>
-                    {country.region}
-                  </p>
-                  <p className="font-light">
-                    <span className="font-semibold">Sub Region: </span>
-                    {country.subregion}
-                  </p>
-                  <p className="font-light">
-                    <span className="font-semibold">Capital: </span>
-                    {country.capital.map((city, index) => (
-                      <span key={index}>
-                        {city}
-                        {index < country.capital.length - 1 ? ", " : ""}
-                      </span>
-                    ))}
-                  </p>
+                  <CountryFact
+                    label="Population"
+                    value={country.population.toLocaleString()}
+                  />
+                  <CountryFact label="Region" value={country.region} />
+                  <CountryFact label="Sub Region" value={country.subregion} />
+                  <CountryFact label="Capital" value={country.capital} />
                 </div>
                 <div className="flex flex-col">
-                  <p className="font-light">
-                    <span className="font-semibold">Top Level Domain: </span>
-                    {country.tld.map((domain, index) => (
-                      <span key={index}>
-                        {domain}
-                        {index < country.tld.length - 1 ? ", " : ""}
-                      </span>
-                    ))}
-                  </p>
-                  <p className="font-light">
-                    <span className="font-semibold">Currencies: </span>
-                    {Object.values(country.currencies).map(
-                      (currency, index) => (
-                        <span key={index}>
-                          {currency.name}
-                          {index < Object.values(country.currencies).length - 1
-                            ? ", "
-                            : ""}
-                        </span>
-                      )
-                    )}
-                  </p>
-                  <p className="font-light">
-                    <span className="font-semibold">Languages: </span>
-                    {Object.values(country.languages).map((language, index) => (
-                      <span key={index}>
-                        {language}
-                        {index < Object.values(country.languages).length - 1
-                          ? ", "
-                          : ""}
-                      </span>
-                    ))}
-                  </p>
+                  <CountryFact label="Top Level Domain" value={country.tld} />
+                  <CountryFact label="Currencies" value={country.currencies} />
+                  <CountryFact label="Languages" value={country.languages} />
                 </div>
               </div>
             </div>
@@ -145,9 +90,11 @@ function CountryDetails() {
                         }}
                         className="bg-white dark:bg-dark-blue-100 flex justify-center items-center py-1.5 min-w-24 rounded-[2px] shadow-custom-5 transition-all hover:scale-105 hover:opacity-80"
                       >
-                        {isBorderCountriesLoading
-                          ? "Loading"
-                          : matchingCountry?.name.common}
+                        {isBorderCountriesLoading ? (
+                          <Loader2 />
+                        ) : (
+                          matchingCountry?.name.common
+                        )}
                       </Link>
                     );
                   })}
@@ -158,5 +105,49 @@ function CountryDetails() {
         </div>
       )}
     </main>
+  );
+}
+
+type Fact = string | number;
+type FactObject = Record<string, { name: string } | string>;
+
+interface CountryFactProps {
+  label: string;
+  value?: Fact | Fact[] | FactObject;
+  separator?: string;
+}
+
+function CountryFact({ label, value, separator = ", " }: CountryFactProps) {
+  const renderValue = () => {
+    if (!value) return null;
+
+    if (typeof value === "string") {
+      return value;
+    }
+
+    if (typeof value === "number") {
+      return value.toString();
+    }
+
+    if (Array.isArray(value)) {
+      return value.join(separator);
+    }
+
+    if (typeof value === "object") {
+      return Object.values(value).map((item, index, array) => {
+        const displayValue = typeof item === "object" ? item.name : item;
+        return index === array.length - 1
+          ? displayValue
+          : `${displayValue}${separator}`;
+      });
+    }
+    return null;
+  };
+
+  return (
+    <p className="font-light">
+      <span className="font-semibold">{label}: </span>
+      {renderValue()}
+    </p>
   );
 }
