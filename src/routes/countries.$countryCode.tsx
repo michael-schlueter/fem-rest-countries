@@ -84,7 +84,7 @@ function CountryDetails() {
                     return (
                       <Link
                         key={borderCountry}
-                        to={`/countries/${borderCountry}`}
+                        to="/countries/$countryCode"
                         params={{
                           countryCode: borderCountry,
                         }}
