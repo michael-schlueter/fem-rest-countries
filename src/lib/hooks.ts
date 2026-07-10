@@ -1,6 +1,6 @@
-import { getBorderCountries, getCountries, getCountry } from "@/api/countries";
+import { getCountries, getCountry } from "@/api/countries";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export function useCountries() {
   return useQuery({
@@ -17,11 +17,14 @@ export function useCountry(countryCode: string | undefined) {
 }
 
 export function useBorderCountries(borders: string[] | undefined) {
-  return useQuery({
-    queryKey: ["borderCountries", borders],
-    queryFn: () => getBorderCountries(borders ?? []),
-    enabled: !!borders, // only run query when we have border codes
-  });
+  const { data: countries = [], isLoading } = useCountries();
+
+  const data = useMemo(() => {
+    if (!borders) return [];
+    return countries.filter((country) => borders.includes(country.cca3));
+  }, [countries, borders]);
+
+  return { data, isLoading };
 }
 
 export function useDebounce<T>(value: T, delay: number = 300): T {
