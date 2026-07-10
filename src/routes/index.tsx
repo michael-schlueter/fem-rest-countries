@@ -16,8 +16,6 @@ function HomeComponent() {
 
   const { isPending, error, data: countries = [] } = useCountries();
 
-  if (error) return <div>Error: {error.message}</div>;
-
   const filteredCountries = useMemo(() => {
     return countries
       .filter((country) => {
@@ -51,6 +49,10 @@ function HomeComponent() {
       {isPending ? (
         <div className="flex justify-center items-center min-h-[400px]">
           <Loader2 className="h-8 w-8 animate-spin" />
+        </div>
+      ) : error ? (
+        <div className="flex justify-center items-center min-h-[400px]">
+          Error: {error.message}
         </div>
       ) : (
         <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(0,264px))] gap-10 sm:gap-[75px] justify-center">
